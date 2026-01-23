@@ -1,0 +1,8 @@
+*.a
+*.o
+*.d
+*.gch
+.gdb_history
+.*.sw*
+a.out
+t
