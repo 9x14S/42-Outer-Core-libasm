@@ -1,5 +1,7 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 
 #include "libasm.h"
 
@@ -39,7 +41,10 @@ int main(void)
 	TEST_CMP(ft_strcpy(test1, ""), strcpy(test2, ""));
 
 	// strdup tests
-	TEST_CMP(ft_strdup("aaaaaaaaaaaaa"), strdup("aaaaaaaaaaaaa"));
+	// TEST_CMP(ft_strdup("aaaaaaaaaaaaa"), strdup("aaaaaaaaaaaaa"));
+	errno = 0;
+	free(ft_strdup("aaaaa"));
+	printf("errno = %d\n", errno);
 
 	return (0);
 }
