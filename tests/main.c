@@ -1,9 +1,8 @@
-#include <signal.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <setjmp.h>
+#include <sys/wait.h>
 
 #define TEST_NULL "Testing crashes on NULL for: "
 #define OK "OK\n"
@@ -11,36 +10,38 @@
 
 #define TEST(x) do {\
 if (test_crashing_function((void *)&x, #x "\n"))\
-	write(1, OK, sizeof(OK) - 1);\
-else\
 	write(1, CRASH, sizeof(CRASH) - 1);\
+else\
+	write(1, OK, sizeof(OK) - 1);\
 } while (0);
 
-jmp_buf	did_crash;
-
-void	segfault_sighandler(int signum)
-{
-	(void)signum;
-	longjmp(did_crash, 1);
-}
+#define CAST_PTR(x) ((size_t (*)(void *, void *, void *))x)
 
 int	test_crashing_function(void *function, char *function_name)
 {
-	volatile void *null = NULL;
 	write(1, TEST_NULL, sizeof(TEST_NULL) - 1);
 	write(1, function_name, __builtin_strlen(function_name));
-	if (setjmp(did_crash) == 0)
+	pid_t pid = fork();
+	if (pid < 0)
+		exit(255);
+	if (pid == 0)
 	{
-		volatile size_t whatever = ((size_t (*)(void *))function)((char *)null);
+		volatile size_t whatever = CAST_PTR(function)(NULL, NULL, NULL);
 		(void)whatever;
-		return 1;
+		exit(0);
 	}
-	return 0;
+	int stat_loc;
+	wait(&stat_loc);
+	return WIFSIGNALED(stat_loc);
 }
 
 int	main(void)
 {
-	signal(SIGSEGV, segfault_sighandler);
 	TEST(strlen);
+	TEST(strcpy);
+	TEST(strcmp);
+	TEST(write);
+	TEST(read);
+	TEST(strdup);
 	return 0;
 }
