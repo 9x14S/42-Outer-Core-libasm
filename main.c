@@ -10,7 +10,7 @@ printf("TESTING: " #x " and " #y "\nRESULT: (%ld), (%ld)\nGRADE:%s\n",\
 x_val, y_val, x_val == y_val ? "PASS" : "FAIL");\
 } while (0)
 
-#define TEST_CPY(x, y) do {\
+#define TEST_CMP(x, y) do {\
 long x_val = (long)x;\
 long y_val = (long)y;\
 printf("TESTING: " #x " and " #y "\nGRADE:%s\n",\
@@ -34,7 +34,12 @@ int main(void)
 	char	test2[] = "aaa";
 
 	// strcpy tests
-	TEST_CPY(ft_strcpy(test1, "ccc"), strcpy(test2, "ccc"));
+	TEST_CMP(ft_strcpy(test1, "ccc"), strcpy(test2, "ccc"));
+	TEST_CMP(ft_strcpy(test1, "c"), strcpy(test2, "c"));
+	TEST_CMP(ft_strcpy(test1, ""), strcpy(test2, ""));
+
+	// strdup tests
+	TEST_CMP(ft_strdup("aaaaaaaaaaaaa"), strdup("aaaaaaaaaaaaa"));
 
 	return (0);
 }
