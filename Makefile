@@ -33,6 +33,6 @@ ft_strdup.o: ft_strcpy.o ft_strlen.o ft_strdup.s
 
 clean:
 	rm -f $(OBJS)
-fclean:
-	rm -f $(TARGET)
+fclean: clean
+	rm -f $(TARGET) $(TESTER)
 re: fclean all
