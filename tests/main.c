@@ -17,6 +17,21 @@ else\
 
 #define CAST_PTR(x) ((size_t (*)(void *, void *, void *))x)
 
+#define _STRINGIFY(x) #x
+
+#define SYSCALL(syscall, x, y, z, explanation) do {\
+	asm(".intel_syntax noprefix;"\
+		"mov rax, " #syscall ";"\
+		"mov rdi, " #x ";"\
+		"mov rsi, " #y ";"\
+		"mov rcx, " #z ";"\
+		"syscall;"\
+		"mov rsi, rax;"\
+		".att_syntax;"\
+	);\
+	printf(explanation ": %ld\n");\
+} while (0);
+
 int	test_crashing_function(void *function, char *function_name)
 {
 	write(1, TEST_NULL, sizeof(TEST_NULL) - 1);
@@ -43,5 +58,9 @@ int	main(void)
 	TEST(write);
 	TEST(read);
 	TEST(strdup);
+
+	SYSCALL(1, 1, 0x00, 0xffff, "Syscall write with NULL buffer");
+	SYSCALL(1, -1, 0x404000, 0xffff, "Syscall write with bad fd");
+
 	return 0;
 }

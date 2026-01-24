@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <errno.h>
+
+#define PRINT_ERR(x) printf(#x ": %d\n", x);
+
+int main(void)
+{
+	PRINT_ERR(EAGAIN);
+	PRINT_ERR(EWOULDBLOCK);
+	PRINT_ERR(EBADF);
+	PRINT_ERR(EDESTADDRREQ);
+	PRINT_ERR(EDQUOT);
+	PRINT_ERR(EFAULT);
+	PRINT_ERR(EFBIG);
+	PRINT_ERR(EINTR);
+	PRINT_ERR(EINVAL);
+	PRINT_ERR(EIO);
+	PRINT_ERR(ENOSPC);
+	PRINT_ERR(EPERM);
+	PRINT_ERR(EPIPE);
+	return (0);
+}

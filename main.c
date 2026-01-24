@@ -41,10 +41,59 @@ int main(void)
 	TEST_CMP(ft_strcpy(test1, ""), strcpy(test2, ""));
 
 	// strdup tests
-	// TEST_CMP(ft_strdup("aaaaaaaaaaaaa"), strdup("aaaaaaaaaaaaa"));
+	TEST_CMP(ft_strdup("aaaaaaaaaaaaa"), strdup("aaaaaaaaaaaaa"));
+
 	errno = 0;
-	free(ft_strdup("aaaaa"));
-	printf("errno = %d\n", errno);
+	ft_write(1, NULL, 0xffff);
+	printf("ft_write errno = %d\n", errno);
+	errno = 0;
+	write(1, NULL, 0xffff);
+	printf("write errno    = %d\n", errno);
+
+	errno = 0;
+	ft_write(-1, &main, 0xffff);
+	printf("ft_write errno = %d\n", errno);
+	errno = 0;
+	write(-1, &main, 0xffff);
+	printf("write errno    = %d\n", errno);
+
+	errno = 0;
+	ft_write(-1, NULL, 0xffff);
+	printf("ft_write errno = %d\n", errno);
+	errno = 0;
+	write(-1, NULL, 0xffff);
+	printf("write errno    = %d\n", errno);
+
+	#define WHATEVER "TITS\n"
+	errno = 0;
+	ft_write(1, WHATEVER, sizeof(WHATEVER));
+	printf("ft_write errno = %d\n", errno);
+	errno = 0;
+	write(1, WHATEVER, sizeof(WHATEVER));
+	printf("write errno    = %d\n", errno);
+
+
+	errno = 0;
+	ft_read(1, NULL, 0xffff);
+	printf("ft_read errno = %d\n", errno);
+	errno = 0;
+	read(1, NULL, 0xffff);
+	printf("read errno    = %d\n", errno);
+
+	errno = 0;
+	ft_read(-1, &main, 0xffff);
+	printf("ft_read errno = %d\n", errno);
+	errno = 0;
+	read(-1, &main, 0xffff);
+	printf("read errno    = %d\n", errno);
+
+	errno = 0;
+	ft_read(-1, NULL, 0xffff);
+	printf("ft_read errno = %d\n", errno);
+	errno = 0;
+	read(-1, NULL, 0xffff);
+	printf("read errno    = %d\n", errno);
+
 
 	return (0);
 }
