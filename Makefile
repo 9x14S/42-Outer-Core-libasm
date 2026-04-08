@@ -1,4 +1,4 @@
-.PHONY : all re clean fclean main
+.PHONY : all re clean fclean main bonus
 
 TARGET      := libasm.a
 
@@ -14,10 +14,13 @@ LD          := /usr/bin/ld
 AS          := /usr/bin/nasm
 ASFLAGS     := -f elf64
 
-ASM_SRCS    := ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s\
-			 ft_write.s ft_read.s # main.s
-OBJS        := $(ASM_SRCS:.s=.o)
+MANDATORY_SRCS    := ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s\
+                     ft_write.s ft_read.s # main.s
+OBJS              := $(MANDATORY_SRCS:.s=.o)
 
+ifeq ($(MAKECMDGOALS),bonus)
+OBJS += $(BONUS_SRCS:.s=.o)
+endif
 
 all: $(TARGET)
 $(TARGET): $(OBJS)
