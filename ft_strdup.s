@@ -10,6 +10,8 @@ EXTERN ft_strcpy
 EXTERN malloc 
 EXTERN __errno_location
 
+SECTION .text
+
 ft_strdup:
 	call .ft_strdup_get_GOT
 .ft_strdup_get_GOT:

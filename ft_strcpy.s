@@ -2,6 +2,8 @@ BITS 64
 
 GLOBAL ft_strcpy
 
+SECTION .text
+
 ft_strcpy:
 	xor rax, rax
 .ft_strcpy_loop:

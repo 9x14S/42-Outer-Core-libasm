@@ -5,6 +5,8 @@ GLOBAL ft_read
 EXTERN _GLOBAL_OFFSET_TABLE_
 EXTERN __errno_location
 
+SECTION .text
+
 ft_read:
 	mov eax, 0
 	syscall

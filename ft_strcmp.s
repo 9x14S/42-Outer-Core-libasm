@@ -2,6 +2,8 @@ BITS 64
 
 GLOBAL ft_strcmp
 
+SECTION .text
+
 ft_strcmp:
 .ft_strcmp_loop:
 	cmp [rdi], byte 0x00

@@ -5,6 +5,8 @@ GLOBAL ft_write
 EXTERN _GLOBAL_OFFSET_TABLE_
 EXTERN __errno_location
 
+SECTION .text
+
 ft_write:
 	mov eax, 1
 	syscall
