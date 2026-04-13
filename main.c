@@ -23,6 +23,8 @@ int main(void)
 {
 	// strlen tests
 	TEST(ft_strlen("aaa"), strlen("aaa"));
+	TEST(ft_strlen("a"), strlen("a"));
+	TEST(ft_strlen("a"), strlen("b"));
 	TEST(ft_strlen(""), strlen(""));
 	TEST(ft_strlen("aaaaaaaaaaaaaaaaaaaaaa"), strlen("aaaaaaaaaaaaaaaaaaaaaa"));
 
