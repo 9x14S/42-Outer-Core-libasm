@@ -26,5 +26,6 @@ ft_read:
 	xor rcx, rcx
 	sub rcx, rax
 	mov [rdx], dword ecx
+	mov rax, -1
 .ft_read_end:
 	ret
