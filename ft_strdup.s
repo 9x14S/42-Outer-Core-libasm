@@ -17,19 +17,22 @@ ft_strdup:
 .ft_strdup_get_GOT:
 	pop rcx
 	add rcx, _GLOBAL_OFFSET_TABLE_+$$-.ft_strdup_get_GOT wrt ..gotpc
-.ft_strdup_alloc:
-	mov rsi, rdi
-	call ft_strlen
-	inc rax
-	mov rdi, rax
+.ft_strdup_get_malloc:
 	push rcx
 	lea rcx, [rcx+malloc wrt ..got]
-	push rsi
-	call [rcx]
+.ft_strdup_get_length:
+	push rdi
+	call ft_strlen
+	inc rax			; +1 for null byte
+.ft_strdup_alloc:
+	mov rdi, rax
+	call [rcx]		; Call malloc
 	pop rsi
 	pop rcx
+.ft_strdup_exit_on_nomem:
 	cmp rax, qword 0x00
 	je .ft_strdup_ENOMEM
+.ft_strdup_copy_to_buffer:
 	mov rdi, rax
 	call ft_strcpy
 	jmp .ft_strdup_end

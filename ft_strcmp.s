@@ -6,12 +6,12 @@ SECTION .text
 
 ft_strcmp:
 .ft_strcmp_loop:
-	cmp [rdi], byte 0x00
+	cmp byte [rdi], byte 0x00
 	je .ft_strcmp_end
-	cmp [rsi], byte 0x00
+	cmp byte [rsi], byte 0x00
 	je .ft_strcmp_end
 	mov cl, byte[rsi]
-	cmp [rdi], cl
+	cmp byte [rdi], cl
 	jne .ft_strcmp_end
 
 	inc rdi
