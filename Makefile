@@ -5,7 +5,7 @@ TARGET      := libasm.a
 TESTER      := a.out
 
 CC          := /usr/bin/cc
-CFLAGS      := -Wall -Wextra -ggdb3 -O0
+CFLAGS      := -Wall -Wextra -ggdb3 -O0 -fno-stack-protector
 
 AR          := /usr/bin/ar
 ARFLAGS     := rcs
