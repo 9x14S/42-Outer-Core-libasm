@@ -16,7 +16,7 @@ ASFLAGS     := -f elf64
 
 MANDATORY_SRCS    := ft_strlen.s ft_strcpy.s ft_strcmp.s ft_strdup.s\
                      ft_write.s ft_read.s # main.s
-BONUS_SRCS        := ft_list_size.s
+BONUS_SRCS        := ft_list_size.s ft_list_push_front.s
 OBJS              := $(MANDATORY_SRCS:.s=.o)
 
 ifeq ($(MAKECMDGOALS),bonus)

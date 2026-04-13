@@ -84,8 +84,16 @@ int main(void)
 	t_list a = {.data = NULL, .next = NULL};
 	t_list b = {.data = NULL, .next = &a};
 	t_list c = {.data = NULL, .next = &b};
-
 	printf("list size = %d\n", ft_list_size(&c));
+
+	t_list *head = NULL;
+	printf("head = %p\n", head);
+	ft_list_push_front(&head, NULL);
+	printf("head = %p\n", head);
+	ft_list_push_front(&head, NULL);
+	printf("head = %p\n", head);
+	ft_list_push_front(&head, NULL);
+	printf("head = %p\n", head);
 
 	return (0);
 }
