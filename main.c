@@ -79,5 +79,13 @@ int main(void)
 	TEST_ERRNO(ft_read(-1, &main, 0xffff), read(-1, &main, 0xffff));
 	TEST_ERRNO(ft_read(-1, NULL, 0xffff), read(-1, NULL, 0xffff));
 
+	// TODO: Bonus tests
+	printf("list size = %d\n", ft_list_size(NULL));
+	t_list a = {.data = NULL, .next = NULL};
+	t_list b = {.data = NULL, .next = &a};
+	t_list c = {.data = NULL, .next = &b};
+
+	printf("list size = %d\n", ft_list_size(&c));
+
 	return (0);
 }
