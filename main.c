@@ -95,5 +95,25 @@ int main(void)
 	ft_list_push_front(&head, NULL);
 	printf("head = %p\n", head);
 
+  // ft_atoi_base tests
+  TEST(ft_atoi_base("0", "0123456789"), 0);
+  TEST(ft_atoi_base("1", "0123456789"), 1);
+  TEST(ft_atoi_base("2", "0123456789"), 2);
+  TEST(ft_atoi_base("3", "0123456789"), 3);
+  TEST(ft_atoi_base("4", "0123456789"), 4);
+  TEST(ft_atoi_base("5", "0123456789"), 5);
+  TEST(ft_atoi_base("6", "0123456789"), 6);
+  TEST(ft_atoi_base("7", "0123456789"), 7);
+  TEST(ft_atoi_base("8", "0123456789"), 8);
+  TEST(ft_atoi_base("9", "0123456789"), 9);
+  TEST(ft_atoi_base("a", "0123456789"), 0);
+  TEST(ft_atoi_base("9", "012345678"), 0);
+  TEST(ft_atoi_base("9", "01234567899"), 0);
+  TEST(ft_atoi_base("9", "-0123456789"), 0);
+  TEST(ft_atoi_base("9", "+0123456789"), 0);
+  TEST(ft_atoi_base("9", " 0123456789"), 0);
+  TEST(ft_atoi_base("9", "9"), 0);
+  TEST(ft_atoi_base("9", "09"), 0);
+
 	return (0);
 }
